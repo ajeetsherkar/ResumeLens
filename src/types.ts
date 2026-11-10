@@ -7,6 +7,7 @@ export type ExtractionStatus =
 export type WarningCode =
   | "missing_section"
   | "low_quality_extraction"
+  | "extraction_mismatch"
   | "ambiguous_date"
   | "overlapping_experience"
   | "unsupported_format"
