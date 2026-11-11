@@ -15,6 +15,11 @@ import {
   type EducationItem,
 } from "../src/lib/normalization/education";
 import { scanPrivacy } from "../src/lib/normalization/privacy";
+import { extractRoles } from "../src/lib/normalization/roles";
+import {
+  calculateCandidateExperience,
+  type ExperienceCalculationResult,
+} from "../src/lib/normalization/experience";
 
 interface ExtractedResume {
   candidate_id: string;
@@ -37,6 +42,7 @@ interface StructuredResumeProfile {
   sections: SectionExtraction["sections"];
   skills: NormalizedSkill[];
   education: EducationItem[];
+  experience: ExperienceCalculationResult;
   privacy: {
     contains_email: boolean;
     contains_phone: boolean;
@@ -134,6 +140,19 @@ function main() {
       const education = extractEducation(
         sectionResult.sections.education,
       );
+      const extractedRoles = extractRoles(
+        sectionResult.sections.experience,
+      );
+      const experience = calculateCandidateExperience(
+        extractedRoles.map(role => ({
+          role_title: role.role_title,
+          employer: role.employer,
+          original_date_text: role.original_date_text,
+          description: role.description,
+          attribution: role.attribution,
+        })),
+        "Nov 2026",
+      );
 
       const warnings: Warning[] = [
         ...record.warnings.map(warning => ({
@@ -152,6 +171,7 @@ function main() {
         sections: sectionResult.sections,
         skills,
         education,
+        experience,
         privacy: {
           contains_email: privacyResult.contains_email,
           contains_phone: privacyResult.contains_phone,
@@ -250,6 +270,16 @@ function main() {
         (sum, profile) => sum + profile.education.length,
         0,
       ),
+      extracted_roles: profiles.reduce(
+        (sum, profile) => sum + profile.experience.roles.length,
+        0,
+      ),
+      profiles_with_experience: profiles.filter(
+        profile => profile.experience.total_experience_months_max !== null,
+      ).length,
+      profiles_with_lca_experience: profiles.filter(
+        profile => profile.experience.lca_experience_months_max !== null,
+      ).length,
       profiles_with_email: profiles.filter(
         profile => profile.privacy.contains_email,
       ).length,
@@ -290,6 +320,9 @@ function main() {
   console.log(`Empty profiles         : ${report.dataset.empty_profiles}`);
   console.log(`Total skills           : ${report.totals.skills}`);
   console.log(`Education items        : ${report.totals.education_items}`);
+  console.log(`Extracted roles         : ${report.totals.extracted_roles}`);
+  console.log(`Profiles with experience: ${report.totals.profiles_with_experience}`);
+  console.log(`Profiles with LCA       : ${report.totals.profiles_with_lca_experience}`);
   console.log(`Profiles with emails   : ${report.totals.profiles_with_email}`);
   console.log(`Profiles with phones   : ${report.totals.profiles_with_phone}`);
   console.log(`Total warnings         : ${report.totals.warnings}`);

@@ -41,12 +41,12 @@ export const EVIDENCE_TIER_CREDITS: Record<EvidenceTier, number> = {
 export const CLASSIFICATION_THRESHOLD: number | null = null;
 
 /**
- * Provisional convention: count calendar months inclusively.
- * Confirm this convention against the assignment specification
- * before relying on it for final scoring.
+ * Elapsed month-index difference.
+ * Example: Sep 2021 to Jun 2023 = 21 months.
+ * Date-derived upper-bound estimates, not verified full-time duration.
  */
 export const MONTH_COUNTING_CONVENTION: MonthCountingConvention =
-  "inclusive_calendar_months";
+  "elapsed_months";
 
 /**
  * Provisional source-quality weights.
