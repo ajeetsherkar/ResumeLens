@@ -1,0 +1,16 @@
+candidate_id,split,selection_seed,sampling_frame_size
+resume_029,calibration,20261111,45
+resume_018,calibration,20261111,45
+resume_023,calibration,20261111,45
+resume_011,calibration,20261111,45
+resume_030,calibration,20261111,45
+resume_021,calibration,20261111,45
+resume_039,calibration,20261111,45
+resume_008,calibration,20261111,45
+resume_012,held-out,20261111,45
+resume_005,held-out,20261111,45
+resume_003,held-out,20261111,45
+resume_031,held-out,20261111,45
+resume_034,held-out,20261111,45
+resume_017,held-out,20261111,45
+resume_036,held-out,20261111,45
