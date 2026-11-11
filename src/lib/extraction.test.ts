@@ -1,3 +1,4 @@
+import { normalizeForComparison } from "./docx-common";
 import { describe, expect, it } from "vitest";
 
 import { extractDocx, normalizeWhitespace } from "./extraction";
@@ -36,4 +37,13 @@ describe("ResumeLens DOCX extraction", () => {
       );
     });
   });
+});
+
+
+it("ignores paragraph spacing differences during comparison", () => {
+  expect(
+    normalizeForComparison("AA\n\nProduct Designer\n\nExperience"),
+  ).toBe(
+    normalizeForComparison("AA\nProduct Designer\nExperience"),
+  );
 });
