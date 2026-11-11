@@ -32,6 +32,7 @@ interface StructuredResumeProfile {
   candidate_id: string;
   source_file: string;
   extraction_status: string;
+  raw_text: string;
   display_text: string;
   sections: SectionExtraction["sections"];
   skills: NormalizedSkill[];
@@ -146,6 +147,7 @@ function main() {
         candidate_id: record.candidate_id,
         source_file: record.source_file,
         extraction_status: record.extraction_status,
+        raw_text: rawText,
         display_text: privacyResult.display_text,
         sections: sectionResult.sections,
         skills,
