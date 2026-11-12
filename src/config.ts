@@ -59,3 +59,19 @@ export const SOURCE_QUALITY_RULE_WEIGHTS = {
   inferred_or_ambiguous_text: 0.5,
   missing_or_unverifiable: 0.0,
 } as const;
+
+/**
+ * Provisional severity weights for deterministic source-quality rules.
+ * Confidence = 1 - (sum of fired rule weights / sum of all rule weights).
+ * These values must be calibrated and documented before final evaluation.
+ */
+export const QUALITY_RULE_WEIGHTS = {
+  R1: 1.00,
+  R2: 0.60,
+  R3: 0.90,
+  R4: 0.50,
+  R5: 0.40,
+  R6: 1.00,
+  R7: 0.10,
+  R8: 0.80,
+} as const;

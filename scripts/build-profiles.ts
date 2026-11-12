@@ -15,6 +15,10 @@ import {
   type EducationItem,
 } from "../src/lib/normalization/education";
 import { scanPrivacy } from "../src/lib/normalization/privacy";
+import {
+  assessSourceQuality,
+  type QualityAssessment,
+} from "../src/lib/quality";
 import { extractRoles } from "../src/lib/normalization/roles";
 import {
   calculateCandidateExperience,
@@ -43,6 +47,7 @@ interface StructuredResumeProfile {
   skills: NormalizedSkill[];
   education: EducationItem[];
   experience: ExperienceCalculationResult;
+  quality: QualityAssessment;
   privacy: {
     contains_email: boolean;
     contains_phone: boolean;
@@ -162,6 +167,16 @@ function main() {
         ...sectionResult.warnings,
       ];
 
+      const quality = assessSourceQuality({
+        raw_text: rawText,
+        extraction_status: record.extraction_status,
+        sections: sectionResult.sections,
+        roles: extractedRoles,
+        experience,
+        privacy: privacyResult,
+        extraction_warnings: warnings,
+      });
+
       return {
         candidate_id: record.candidate_id,
         source_file: record.source_file,
@@ -172,6 +187,7 @@ function main() {
         skills,
         education,
         experience,
+        quality,
         privacy: {
           contains_email: privacyResult.contains_email,
           contains_phone: privacyResult.contains_phone,
@@ -280,6 +296,42 @@ function main() {
       profiles_with_lca_experience: profiles.filter(
         profile => profile.experience.lca_experience_months_max !== null,
       ).length,
+      mean_source_confidence:
+        profiles.reduce(
+          (sum, profile) => sum + profile.quality.confidence,
+          0,
+        ) / profiles.length,
+      profiles_requiring_review: profiles.filter(
+        profile => profile.quality.review_required,
+      ).length,
+      quality_rule_firings: {
+        R1: profiles.filter(p => p.quality.rules.some(r => r.rule_id === "R1" && r.fired)).length,
+        R2: profiles.filter(p => p.quality.rules.some(r => r.rule_id === "R2" && r.fired)).length,
+        R3: profiles.filter(p => p.quality.rules.some(r => r.rule_id === "R3" && r.fired)).length,
+        R4: profiles.filter(p => p.quality.rules.some(r => r.rule_id === "R4" && r.fired)).length,
+        R5: profiles.filter(p => p.quality.rules.some(r => r.rule_id === "R5" && r.fired)).length,
+        R6: profiles.filter(p => p.quality.rules.some(r => r.rule_id === "R6" && r.fired)).length,
+        R7: profiles.filter(p => p.quality.rules.some(r => r.rule_id === "R7" && r.fired)).length,
+        R8: profiles.filter(p => p.quality.rules.some(r => r.rule_id === "R8" && r.fired)).length,
+      },
+      quality_issue_types: {
+        extraction_error: profiles.reduce(
+          (sum, p) => sum + p.quality.issues.filter(i => i.type === "extraction_error").length,
+          0,
+        ),
+        source_incomplete: profiles.reduce(
+          (sum, p) => sum + p.quality.issues.filter(i => i.type === "source_incomplete").length,
+          0,
+        ),
+        ambiguous_evidence: profiles.reduce(
+          (sum, p) => sum + p.quality.issues.filter(i => i.type === "ambiguous_evidence").length,
+          0,
+        ),
+        privacy_flag: profiles.reduce(
+          (sum, p) => sum + p.quality.issues.filter(i => i.type === "privacy_flag").length,
+          0,
+        ),
+      },
       profiles_with_email: profiles.filter(
         profile => profile.privacy.contains_email,
       ).length,
@@ -323,6 +375,8 @@ function main() {
   console.log(`Extracted roles         : ${report.totals.extracted_roles}`);
   console.log(`Profiles with experience: ${report.totals.profiles_with_experience}`);
   console.log(`Profiles with LCA       : ${report.totals.profiles_with_lca_experience}`);
+  console.log(`Mean source confidence  : ${report.totals.mean_source_confidence.toFixed(4)}`);
+  console.log(`Profiles requiring review: ${report.totals.profiles_requiring_review}`);
   console.log(`Profiles with emails   : ${report.totals.profiles_with_email}`);
   console.log(`Profiles with phones   : ${report.totals.profiles_with_phone}`);
   console.log(`Total warnings         : ${report.totals.warnings}`);
