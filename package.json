@@ -9,8 +9,8 @@
     "lint": "eslint",
     "test": "vitest run",
     "extract": "tsx scripts/extract.ts",
-    "build-dataset": "tsx scripts/build-dataset.ts",
-    "extract-resumes": "tsx scripts/extract-resumes.ts"
+    "extract-resumes": "tsx scripts/extract-resumes.ts",
+    "build-profiles": "tsx scripts/build-profiles.ts"
   },
   "dependencies": {
     "@xmldom/xmldom": "^0.9.12",
