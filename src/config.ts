@@ -42,6 +42,47 @@ export const EVIDENCE_TIER_CREDITS: Record<EvidenceTier, number> = {
  */
 export const CLASSIFICATION_THRESHOLD: number | null = null;
 
+
+/**
+ * Individual evidence criterion weights.
+ * Each role totals exactly 100 points.
+ * These are initial project weights and require later calibration.
+ */
+export const ROLE_CRITERION_WEIGHTS = {
+  LCA: {
+    lca_methodology: 20,
+    lci: 10,
+    lca_standards: 15,
+    lca_software: 15,
+    epd: 10,
+    impact_assessment: 10,
+    carbon_footprint: 10,
+    environmental_assessment: 10,
+  },
+  "UI/UX": {
+    design_tools: 10,
+    wireframing: 8,
+    prototyping: 10,
+    interaction_design: 10,
+    visual_design: 10,
+    user_research: 15,
+    usability_testing: 12,
+    design_methods: 10,
+    research_artifacts: 8,
+    design_systems: 7,
+  },
+} as const;
+
+/**
+ * Provisional classification rules.
+ * The low-confidence override takes precedence over score thresholds.
+ */
+export const CLASSIFICATION_RULES = {
+  strong_match_min_score: 75,
+  potential_match_min_score: 50,
+  minimum_source_confidence: 0.60,
+} as const;
+
 /**
  * Elapsed month-index difference.
  * Example: Sep 2021 to Jun 2023 = 21 months.

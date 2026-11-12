@@ -56,6 +56,17 @@ export type Classification =
   | "not_a_match"
   | "needs_review";
 
+/**
+ * Eligibility is independent of candidate scoring.
+ * Unknown means the resume does not establish the information.
+ */
+export type EligibilityStatus = "yes" | "no" | "unknown";
+
+export interface CandidateEligibility {
+  relocation: EligibilityStatus;
+  full_time_availability: EligibilityStatus;
+}
+
 export type ExperienceAttribution =
   | "employment"
   | "internship"
