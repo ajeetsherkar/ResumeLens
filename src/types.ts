@@ -23,7 +23,8 @@ export type EvidenceTier =
   | "demonstrated"
   | "listed_only"
   | "ambiguous"
-  | "missing";
+  | "missing"
+  | "source_incomplete";
 
 export interface EvidenceItem {
   tier: EvidenceTier;

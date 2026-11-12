@@ -32,6 +32,8 @@ export const EVIDENCE_TIER_CREDITS: Record<EvidenceTier, number> = {
   listed_only: 0.5,
   ambiguous: 0.25,
   missing: 0.0,
+  // Conservative credit: damaged sources cannot establish reliable evidence.
+  source_incomplete: 0.0,
 };
 
 /**
