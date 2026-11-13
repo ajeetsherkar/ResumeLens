@@ -1,7 +1,7 @@
 import "server-only";
 
-import fs from "node:fs";
-import path from "node:path";
+import { readJson } from "./read-json";
+
 
 import type { RankingCandidate, RankingRole } from "@/lib/ranking";
 
@@ -35,20 +35,6 @@ type ProfileRecord = {
     }[];
   };
 };
-
-const dataDirectory = path.join(process.cwd(), "data", "processed");
-
-function readJson<T>(filename: string): T {
-  const filePath = path.join(dataDirectory, filename);
-
-  if (!fs.existsSync(filePath)) {
-    throw new Error(
-      `Required dashboard data is missing: ${filename}. Run the dataset generation scripts first.`,
-    );
-  }
-
-  return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
-}
 
 export type ReviewReasonCategory =
   | "low_confidence"
@@ -135,9 +121,9 @@ function toSafeCandidate(candidate: CandidateRecord): RankingCandidate {
   };
 }
 
-export function getDashboardData(): DashboardData {
-  const rawCandidates = readJson<CandidateRecord[]>("candidates.json");
-  const profiles = readJson<ProfileRecord[]>("structured-profiles.json");
+export async function getDashboardData(): Promise<DashboardData> {
+  const rawCandidates = await readJson<CandidateRecord[]>("candidates.json");
+  const profiles = await readJson<ProfileRecord[]>("structured-profiles.json");
 
   const profileById = new Map(
     profiles.map((profile) => [profile.candidate_id, profile]),

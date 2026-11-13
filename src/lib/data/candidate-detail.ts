@@ -1,6 +1,8 @@
+import "server-only";
 
-import fs from "node:fs";
-import path from "node:path";
+import { readJson } from "./read-json";
+
+
 
 import {
   CLASSIFICATION_RULES,
@@ -232,18 +234,6 @@ export type CandidateDetail = {
   };
 };
 
-const dataDirectory = path.join(process.cwd(), "data", "processed");
-
-function readJson<T>(filename: string): T {
-  const filePath = path.join(dataDirectory, filename);
-
-  if (!fs.existsSync(filePath)) {
-    throw new Error(`Required candidate data is missing: ${filename}`);
-  }
-
-  return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
-}
-
 /**
  * Remove email addresses and phone-like sequences from displayed excerpts.
  * Raw resume text and source filenames are never returned.
@@ -444,15 +434,15 @@ function sectionTexts(
     .filter(Boolean);
 }
 
-export function getCandidateDetail(
+export async function getCandidateDetail(
   candidateId: string,
-): CandidateDetail | null {
+): Promise<CandidateDetail | null> {
   if (!/^\d{3,}$/.test(candidateId)) {
     return null;
   }
 
-  const candidates = readJson<RawCandidate[]>("candidates.json");
-  const profiles = readJson<RawProfile[]>("structured-profiles.json");
+  const candidates = await readJson<RawCandidate[]>("candidates.json");
+  const profiles = await readJson<RawProfile[]>("structured-profiles.json");
 
   const candidate = candidates.find(
     (item) => item.candidate_id === candidateId,
