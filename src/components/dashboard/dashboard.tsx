@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { DashboardData } from "@/lib/data/dashboard";
 
 import RankedCandidates from "./ranked-candidates";
+import CandidateDetailDrawer from "./candidate-detail-drawer";
 
 type Role = "LCA" | "UI/UX";
 
@@ -101,6 +102,7 @@ export default function Dashboard({
   data: DashboardData;
 }) {
   const [activeRole, setActiveRole] = useState<Role>("LCA");
+  const [selectedCandidateId, setSelectedCandidateId] = useState<string | null>(null);
   const roleData = data.roles[activeRole];
   const job = jobProfiles[activeRole];
 
@@ -308,7 +310,16 @@ export default function Dashboard({
           </div>
         </section>
 
-        <RankedCandidates candidates={data.candidates} role={activeRole} />
+        <RankedCandidates
+          candidates={data.candidates}
+          role={activeRole}
+          onSelectCandidate={setSelectedCandidateId}
+        />
+
+        <CandidateDetailDrawer
+          candidateId={selectedCandidateId}
+          onClose={() => setSelectedCandidateId(null)}
+        />
 
 
         <footer className="border-t border-slate-200 py-5 text-center text-xs text-slate-400">

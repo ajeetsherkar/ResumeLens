@@ -46,9 +46,11 @@ const tierLabels = {
 export default function RankedCandidates({
   candidates,
   role,
+  onSelectCandidate,
 }: {
   candidates: RankingCandidate[];
   role: RankingRole;
+  onSelectCandidate: (candidateId: string) => void;
 }) {
   const [filters, setFilters] = useState<RankingFilters>({
     ...DEFAULT_RANKING_FILTERS,
@@ -270,9 +272,14 @@ export default function RankedCandidates({
                   </td>
 
                   <td className="px-4 py-4">
-                    <span className="font-semibold text-slate-900">
+                    <button
+                      type="button"
+                      onClick={() => onSelectCandidate(candidate.candidate_id)}
+                      className="font-semibold text-blue-700 underline-offset-4 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                      aria-label={`View details for candidate ${candidate.candidate_id}`}
+                    >
                       {candidate.candidate_id}
-                    </span>
+                    </button>
                   </td>
 
                   <td className="px-4 py-4">
