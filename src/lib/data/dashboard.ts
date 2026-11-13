@@ -27,6 +27,13 @@ type CandidateRecord = RankingCandidate & {
 type ProfileRecord = {
   candidate_id: string;
   extraction_status: string;
+  quality?: {
+    issues?: {
+      rule_id: string;
+      type: string;
+      reason: string;
+    }[];
+  };
 };
 
 const dataDirectory = path.join(process.cwd(), "data", "processed");
@@ -43,10 +50,31 @@ function readJson<T>(filename: string): T {
   return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
 }
 
+export type ReviewReasonCategory =
+  | "low_confidence"
+  | "source_incomplete"
+  | "ambiguous_evidence"
+  | "conflicting_dates"
+  | "extraction_error";
+
+export type ReviewQueueItem = {
+  candidateId: string;
+  confidence: number;
+  extractionStatus: string;
+  roles: Role[];
+  reasons: {
+    category: ReviewReasonCategory;
+    label: string;
+    explanation: string;
+  }[];
+  extractionMessage: string | null;
+};
+
 export type DashboardData = {
   processed: number;
   failedFiles: number;
   needsReview: number;
+  reviewQueue: ReviewQueueItem[];
   roles: Record<
     Role,
     {
@@ -138,6 +166,7 @@ export function getDashboardData(): DashboardData {
 
   let needsReview = 0;
   let failedFiles = 0;
+  const reviewQueue: ReviewQueueItem[] = [];
 
   const scoreTotals: Record<Role, number> = {
     LCA: 0,
@@ -163,13 +192,101 @@ export function getDashboardData(): DashboardData {
       ),
     );
 
-    if (
+    const reasons: ReviewQueueItem["reasons"] = [];
+    const addReason = (
+      category: ReviewReasonCategory,
+      label: string,
+      explanation: string,
+    ) => {
+      if (!reasons.some((reason) => reason.category === category && reason.explanation === explanation)) {
+        reasons.push({ category, label, explanation });
+      }
+    };
+
+    if (candidate.source_confidence < 0.6) {
+      addReason(
+        "low_confidence",
+        "Low confidence",
+        `Source confidence is ${(candidate.source_confidence * 100).toFixed(1)}%, below the 60% review threshold.`,
+      );
+    }
+
+    for (const issue of profile.quality?.issues ?? []) {
+      const isDateIssue =
+        issue.rule_id === "R4" || issue.rule_id === "R6";
+
+      if (isDateIssue) {
+        addReason(
+          "conflicting_dates",
+          "Date validation",
+          issue.reason,
+        );
+      } else if (issue.type === "extraction_error") {
+        addReason(
+          "extraction_error",
+          "Extraction error",
+          issue.reason,
+        );
+      } else if (issue.type === "ambiguous_evidence") {
+        addReason(
+          "ambiguous_evidence",
+          "Ambiguous evidence",
+          issue.reason,
+        );
+      } else if (issue.type === "source_incomplete") {
+        addReason(
+          "source_incomplete",
+          "Incomplete source",
+          issue.reason,
+        );
+      }
+    }
+
+    if (["failed", "empty"].includes(profile.extraction_status)) {
+      addReason(
+        "extraction_error",
+        "Extraction error",
+        profile.extraction_status === "empty"
+          ? "No readable text was extracted from this file."
+          : "Text extraction failed for this file.",
+      );
+    }
+
+    const needsHumanReview =
       candidate.review_required ||
       candidate.source_confidence < 0.6 ||
       ["failed", "empty"].includes(profile.extraction_status) ||
-      evidenceNeedsReview
-    ) {
+      evidenceNeedsReview;
+
+    if (needsHumanReview) {
       needsReview += 1;
+
+      if (reasons.length === 0) {
+        addReason(
+          "source_incomplete",
+          "Manual review required",
+          "The screening pipeline flagged this candidate for human review.",
+        );
+      }
+
+      const rolesNeedingReview = (["LCA", "UI/UX"] as Role[]).filter((role) =>
+        candidate.role_results[role].evidence.some((item) =>
+          ["ambiguous", "source_incomplete"].includes(item.tier),
+        ),
+      );
+
+      reviewQueue.push({
+        candidateId: candidate.candidate_id,
+        confidence: candidate.source_confidence,
+        extractionStatus: profile.extraction_status,
+        roles: rolesNeedingReview,
+        reasons,
+        extractionMessage: ["failed", "empty"].includes(profile.extraction_status)
+          ? profile.extraction_status === "empty"
+            ? "No readable text was extracted (0 characters). Check the original file and upload a text-readable version."
+            : "The file could not be processed. Check the original file and try uploading it again."
+          : null,
+      });
     }
 
     for (const role of ["LCA", "UI/UX"] as Role[]) {
@@ -191,6 +308,9 @@ export function getDashboardData(): DashboardData {
     processed: rawCandidates.length,
     failedFiles,
     needsReview,
+    reviewQueue: reviewQueue.sort(
+      (a, b) => a.confidence - b.confidence || a.candidateId.localeCompare(b.candidateId),
+    ),
     roles,
     candidates: rawCandidates.map(toSafeCandidate),
   };

@@ -473,14 +473,23 @@ export function getCandidateDetail(
   const sourcePrivacyClear =
     profile.privacy?.contains_email === false &&
     profile.privacy?.contains_phone === false;
+  const extractionSucceeded = ["success", "partial"].includes(
+    profile.extraction_status,
+  );
   const sourceAvailable =
-    displayedSource.length > 0 && sourcePrivacyClear;
+    extractionSucceeded &&
+    displayedSource.trim().length > 0 &&
+    sourcePrivacyClear;
 
   const sourceMessage = sourceAvailable
     ? "Extracted resume text. Highlighted passages are verified evidence linked to screening criteria."
-    : !displayedSource
-      ? "Extracted resume text is unavailable for this candidate."
-      : "Source text is hidden because its privacy checks are incomplete or detected personal contact details.";
+    : ["failed", "empty"].includes(profile.extraction_status)
+      ? profile.extraction_status === "empty"
+        ? "No readable resume text was extracted. The original file needs to be checked and uploaded again in a text-readable format."
+        : "Resume text extraction failed. The original file needs to be checked and processed again."
+      : !displayedSource.trim()
+        ? "Extracted resume text is unavailable for this candidate."
+        : "Source text is hidden because its privacy checks are incomplete or detected personal contact details.";
 
   return {
     candidateId: candidate.candidate_id,

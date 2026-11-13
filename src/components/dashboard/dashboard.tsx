@@ -6,6 +6,7 @@ import type { DashboardData } from "@/lib/data/dashboard";
 
 import RankedCandidates from "./ranked-candidates";
 import CandidateDetailDrawer from "./candidate-detail-drawer";
+import NeedsHumanReviewQueue from "./needs-human-review-queue";
 
 type Role = "LCA" | "UI/UX";
 
@@ -309,6 +310,11 @@ export default function Dashboard({
             </p>
           </div>
         </section>
+
+        <NeedsHumanReviewQueue
+          items={data.reviewQueue}
+          onSelectCandidate={setSelectedCandidateId}
+        />
 
         <RankedCandidates
           candidates={data.candidates}
