@@ -18,6 +18,8 @@ type RawSnippet = {
   text?: string;
   matched_text?: string;
   section?: string;
+  start_offset?: number;
+  end_offset?: number;
   verified?: boolean;
 };
 
@@ -81,6 +83,11 @@ type RawCandidate = {
 type RawProfile = {
   candidate_id: string;
   extraction_status: string;
+  display_text?: string;
+  privacy?: {
+    contains_email?: boolean;
+    contains_phone?: boolean;
+  };
   skills: {
     canonical_name: string;
     original_text: string;
@@ -147,9 +154,15 @@ export type CandidateCriterionDetail = {
   tier: EvidenceTier;
   explanation: string;
   evidence: {
+    id: string;
     text: string;
     matchedText: string;
     section: string;
+    start: number | null;
+    end: number | null;
+    criterionId: string;
+    criterionLabel: string;
+    role: Role;
     verified: boolean;
   }[];
 };
@@ -203,6 +216,11 @@ export type CandidateDetail = {
   quality: {
     confidence: number;
     reviewRequired: boolean;
+  };
+  source: {
+    available: boolean;
+    text: string;
+    message: string;
   };
   sourceDocument: {
     available: boolean;
@@ -369,10 +387,20 @@ function buildRoleDetail(
   const criteria = result.score.criteria.map((criterion) => {
     const evidence = evidenceByCriterion.get(criterion.criterion_id);
 
-    const snippets = (evidence?.snippets ?? []).map((snippet) => ({
+    const snippets = (evidence?.snippets ?? []).map((snippet, index) => ({
+      id: `${role}:${criterion.criterion_id}:${index}`,
       text: sanitizeText(snippet.text ?? ""),
       matchedText: sanitizeText(snippet.matched_text ?? ""),
       section: snippet.section ?? "unknown",
+      start:
+        Number.isInteger(snippet.start_offset) ? snippet.start_offset! : null,
+      end:
+        Number.isInteger(snippet.end_offset) ? snippet.end_offset! : null,
+      criterionId: criterion.criterion_id,
+      criterionLabel:
+        evidence?.criterion_label ??
+        criterion.criterion_id.replaceAll("_", " "),
+      role,
       verified: snippet.verified === true,
     }));
 
@@ -440,6 +468,19 @@ export function getCandidateDetail(
 
   const sourceConfidence = candidate.source_confidence;
   const reviewRequired = candidate.review_required;
+
+  const displayedSource = profile.display_text ?? "";
+  const sourcePrivacyClear =
+    profile.privacy?.contains_email === false &&
+    profile.privacy?.contains_phone === false;
+  const sourceAvailable =
+    displayedSource.length > 0 && sourcePrivacyClear;
+
+  const sourceMessage = sourceAvailable
+    ? "Extracted resume text. Highlighted passages are verified evidence linked to screening criteria."
+    : !displayedSource
+      ? "Extracted resume text is unavailable for this candidate."
+      : "Source text is hidden because its privacy checks are incomplete or detected personal contact details.";
 
   return {
     candidateId: candidate.candidate_id,
@@ -517,6 +558,11 @@ export function getCandidateDetail(
       reviewRequired: profile.quality.review_required,
     },
 
+    source: {
+      available: sourceAvailable,
+      text: sourceAvailable ? displayedSource : "",
+      message: sourceMessage,
+    },
     sourceDocument: {
       available: false,
       message:

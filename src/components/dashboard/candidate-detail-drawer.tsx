@@ -6,6 +6,7 @@ import type {
   CandidateWarning,
   CandidateRoleDetail,
 } from "@/lib/data/candidate-detail";
+import { buildHighlightSegments } from "@/lib/data/source-highlights";
 
 const classificationLabels = {
   strong_match: "Strong match",
@@ -108,7 +109,130 @@ function ClassificationCard({
   );
 }
 
-function RoleCriteria({ detail }: { detail: CandidateRoleDetail }) {
+function SourceEvidenceViewer({ detail }: { detail: CandidateDetail }) {
+  const allEvidence = (["LCA", "UI/UX"] as const).flatMap((role) =>
+    detail.roles[role].criteria.flatMap((criterion) => criterion.evidence),
+  );
+
+  const validEvidence = allEvidence.filter(
+    (item) =>
+      item.verified &&
+      item.start !== null &&
+      item.end !== null &&
+      item.end > item.start,
+  );
+
+  const segments = detail.source.available
+    ? buildHighlightSegments(
+        detail.source.text,
+        validEvidence.map((item) => ({
+          id: item.id,
+          start: item.start!,
+          end: item.end!,
+          text: item.text,
+          criterionId: item.criterionId,
+          criterionLabel: item.criterionLabel,
+          role: item.role,
+          verified: item.verified,
+        })),
+      )
+    : [];
+
+  const evidenceById = new Map(
+    validEvidence.map((item) => [item.id, item]),
+  );
+  const anchorIds = new Set<string>();
+
+  return (
+    <Section
+      title="Resume source and verified evidence"
+      description="Highlighted passages are verified evidence linked to screening criteria. Use the links in each criterion to locate its passage."
+    >
+      {!detail.source.available ? (
+        <EmptyState>{detail.source.message}</EmptyState>
+      ) : (
+        <div className="space-y-3">
+          <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded-sm bg-amber-200 ring-1 ring-amber-300" />
+              Verified evidence
+            </span>
+            <span>{validEvidence.length} verified items with offsets</span>
+          </div>
+
+          {segments.length === 0 ? (
+            <EmptyState>
+              Extracted resume text is available, but no verified evidence
+              passages with matching source offsets are available to highlight.
+            </EmptyState>
+          ) : (
+            <div className="max-h-[32rem] overflow-auto rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <pre className="whitespace-pre-wrap break-words font-sans text-xs leading-6 text-slate-700">
+                {segments.map((segment, index) => {
+                  const previousEnd =
+                    index === 0 ? 0 : segments[index - 1].end;
+                  const before = detail.source.text.slice(
+                    previousEnd,
+                    segment.start,
+                  );
+
+                  const newAnchors = segment.evidenceIds.filter((id) => {
+                    if (anchorIds.has(id)) return false;
+                    anchorIds.add(id);
+                    return true;
+                  });
+
+                  const descriptions = segment.evidenceIds
+                    .map((id) => evidenceById.get(id))
+                    .filter((item) => item !== undefined)
+                    .map((item) => `${item.role}: ${item.criterionLabel}`);
+
+                  return (
+                    <span key={`${segment.start}-${segment.end}-${index}`}>
+                      {before}
+                      <mark
+                        className="rounded-sm bg-amber-200 px-0.5 text-slate-900 ring-1 ring-amber-300"
+                        title={descriptions.join(" · ")}
+                      >
+                        {newAnchors.map((id) => (
+                          <span
+                            key={id}
+                            id={`source-evidence-${id}`}
+                            className="scroll-mt-4"
+                          />
+                        ))}
+                        {segment.text}
+                      </mark>
+                    </span>
+                  );
+                })}
+                {detail.source.text.slice(
+                  segments.length > 0
+                    ? segments[segments.length - 1].end
+                    : 0,
+                )}
+              </pre>
+            </div>
+          )}
+
+          <p className="text-xs leading-5 text-slate-500">
+            Only verified passages with valid offsets and matching source text
+            are highlighted. Unhighlighted text was not linked to a verified
+            scoring snippet; it is not proof that a skill is absent.
+          </p>
+        </div>
+      )}
+    </Section>
+  );
+}
+
+function RoleCriteria({
+  detail,
+  sourceAvailable,
+}: {
+  detail: CandidateRoleDetail;
+  sourceAvailable: boolean;
+}) {
   return (
     <div className="space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -172,7 +296,7 @@ function RoleCriteria({ detail }: { detail: CandidateRoleDetail }) {
             {criterion.explanation}
           </p>
 
-          {criterion.evidence.length > 0 && (
+          {criterion.evidence.length > 0 ? (
             <div className="mt-3 space-y-2">
               <p className="text-xs font-semibold text-slate-700">
                 Resume evidence
@@ -190,6 +314,17 @@ function RoleCriteria({ detail }: { detail: CandidateRoleDetail }) {
                       Matched text: {item.matchedText}
                     </p>
                   )}
+                  {sourceAvailable &&
+                    item.verified &&
+                    item.start !== null &&
+                    item.end !== null && (
+                      <a
+                        href={`#source-evidence-${item.id}`}
+                        className="mt-2 inline-flex text-xs font-semibold text-blue-700 underline underline-offset-2 hover:text-blue-900"
+                      >
+                        View in source
+                      </a>
+                    )}
                   <div className="mt-2 flex flex-wrap gap-2 text-xs text-slate-500">
                     <span>Section: {item.section}</span>
                     <span>·</span>
@@ -200,6 +335,10 @@ function RoleCriteria({ detail }: { detail: CandidateRoleDetail }) {
                 </div>
               ))}
             </div>
+          ) : (
+            <p className="mt-3 text-xs text-slate-500">
+              No verified resume evidence snippet is available for this criterion.
+            </p>
           )}
         </article>
       ))}
@@ -247,6 +386,7 @@ function CandidateContent({ detail }: { detail: CandidateDetail }) {
         )}
       </Section>
 
+      <SourceEvidenceViewer detail={detail} />
       <Section
         title="Extracted profile"
         description="Information below is extracted from the candidate's resume. Missing information is not assumed."
@@ -401,8 +541,14 @@ function CandidateContent({ detail }: { detail: CandidateDetail }) {
         description="Each criterion shows its configured weight, evidence credit, awarded points, and the explanation generated by the scoring engine."
       >
         <div className="space-y-6">
-          <RoleCriteria detail={detail.roles.LCA} />
-          <RoleCriteria detail={detail.roles["UI/UX"]} />
+          <RoleCriteria
+            detail={detail.roles.LCA}
+            sourceAvailable={detail.source.available}
+          />
+          <RoleCriteria
+            detail={detail.roles["UI/UX"]}
+            sourceAvailable={detail.source.available}
+          />
         </div>
       </Section>
 
@@ -550,7 +696,7 @@ export default function CandidateDetailDrawer({
         role="dialog"
         aria-modal="true"
         aria-labelledby="candidate-detail-title"
-        className="flex h-full w-full max-w-2xl flex-col bg-white shadow-2xl"
+        className="flex h-full w-full max-w-5xl flex-col bg-white shadow-2xl"
       >
         <header className="flex shrink-0 items-center justify-between border-b border-slate-200 px-5 py-4 sm:px-6">
           <div>
