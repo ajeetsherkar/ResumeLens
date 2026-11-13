@@ -13,6 +13,7 @@
     "build-profiles": "tsx scripts/build-profiles.ts"
   },
   "dependencies": {
+    "@vercel/blob": "^2.9.0",
     "@xmldom/xmldom": "^0.9.12",
     "jszip": "^3.10.2",
     "mammoth": "^1.13.0",
