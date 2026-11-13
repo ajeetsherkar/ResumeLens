@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import type { DashboardData } from "@/lib/data/dashboard";
 
+import RankedCandidates from "./ranked-candidates";
+
 type Role = "LCA" | "UI/UX";
 
 const jobProfiles = {
@@ -305,6 +307,9 @@ export default function Dashboard({
             </p>
           </div>
         </section>
+
+        <RankedCandidates candidates={data.candidates} role={activeRole} />
+
 
         <footer className="border-t border-slate-200 py-5 text-center text-xs text-slate-400">
           ResumeLens · Evidence-based candidate screening · Human review remains

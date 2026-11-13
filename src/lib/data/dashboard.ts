@@ -3,26 +3,23 @@ import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 
-type Role = "LCA" | "UI/UX";
+import type { RankingCandidate, RankingRole } from "@/lib/ranking";
 
-type CandidateRecord = {
-  candidate_id: string;
-  source_confidence: number;
-  review_required: boolean;
-  experience: {
-    total_experience_months_max: number | null;
-    lca_experience_months_max: number | null;
-  };
+type Role = RankingRole;
+
+type CandidateRecord = RankingCandidate & {
   role_results: Record<
     Role,
     {
       score: { total_score: number };
-      classification:
-        | "strong_match"
-        | "potential_match"
-        | "not_a_match"
-        | "needs_review";
-      evidence: { tier: string }[];
+      classification: RankingCandidate["role_results"][Role]["classification"];
+      evidence: {
+        criterion_id: string;
+        criterion_label: string;
+        role: Role;
+        tier: RankingCandidate["role_results"][Role]["evidence"][number]["tier"];
+        matched_aliases: string[];
+      }[];
     }
   >;
 };
@@ -62,10 +59,56 @@ export type DashboardData = {
       averageScore: number;
     }
   >;
+  candidates: RankingCandidate[];
 };
 
+function toSafeCandidate(candidate: CandidateRecord): RankingCandidate {
+  return {
+    candidate_id: candidate.candidate_id,
+    source_confidence: candidate.source_confidence,
+    review_required: candidate.review_required,
+    experience: {
+      total_experience_months_max:
+        candidate.experience.total_experience_months_max,
+      lca_experience_months_max:
+        candidate.experience.lca_experience_months_max,
+    },
+    warnings: candidate.warnings.map((warning) => ({
+      code: warning.code,
+      message: warning.message,
+      ...(warning.section ? { section: warning.section } : {}),
+    })),
+    role_results: {
+      LCA: {
+        score: { total_score: candidate.role_results.LCA.score.total_score },
+        classification: candidate.role_results.LCA.classification,
+        evidence: candidate.role_results.LCA.evidence.map((item) => ({
+          criterion_id: item.criterion_id,
+          criterion_label: item.criterion_label,
+          role: item.role,
+          tier: item.tier,
+          matched_aliases: item.matched_aliases,
+        })),
+      },
+      "UI/UX": {
+        score: {
+          total_score: candidate.role_results["UI/UX"].score.total_score,
+        },
+        classification: candidate.role_results["UI/UX"].classification,
+        evidence: candidate.role_results["UI/UX"].evidence.map((item) => ({
+          criterion_id: item.criterion_id,
+          criterion_label: item.criterion_label,
+          role: item.role,
+          tier: item.tier,
+          matched_aliases: item.matched_aliases,
+        })),
+      },
+    },
+  };
+}
+
 export function getDashboardData(): DashboardData {
-  const candidates = readJson<CandidateRecord[]>("candidates.json");
+  const rawCandidates = readJson<CandidateRecord[]>("candidates.json");
   const profiles = readJson<ProfileRecord[]>("structured-profiles.json");
 
   const profileById = new Map(
@@ -95,9 +138,13 @@ export function getDashboardData(): DashboardData {
 
   let needsReview = 0;
   let failedFiles = 0;
-  const scoreTotals: Record<Role, number> = { LCA: 0, "UI/UX": 0 };
 
-  for (const candidate of candidates) {
+  const scoreTotals: Record<Role, number> = {
+    LCA: 0,
+    "UI/UX": 0,
+  };
+
+  for (const candidate of rawCandidates) {
     const profile = profileById.get(candidate.candidate_id);
 
     if (!profile) {
@@ -135,15 +182,16 @@ export function getDashboardData(): DashboardData {
 
   for (const role of ["LCA", "UI/UX"] as Role[]) {
     roles[role].averageScore =
-      candidates.length > 0
-        ? Math.round((scoreTotals[role] / candidates.length) * 10) / 10
+      rawCandidates.length > 0
+        ? Math.round((scoreTotals[role] / rawCandidates.length) * 10) / 10
         : 0;
   }
 
   return {
-    processed: candidates.length,
+    processed: rawCandidates.length,
     failedFiles,
     needsReview,
     roles,
+    candidates: rawCandidates.map(toSafeCandidate),
   };
 }
