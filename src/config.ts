@@ -37,10 +37,11 @@ export const EVIDENCE_TIER_CREDITS: Record<EvidenceTier, number> = {
 };
 
 /**
- * Placeholder only. Calibrate this after score distribution
- * analysis and held-out evaluation.
+ * Provisional fallback threshold retained after calibration.
+ * The tested 50–70 grid produced identical predictions, so
+ * 50 is not claimed to be an empirically optimal threshold.
  */
-export const CLASSIFICATION_THRESHOLD: number | null = null;
+export const CLASSIFICATION_THRESHOLD = 50;
 
 
 /**
@@ -79,7 +80,7 @@ export const ROLE_CRITERION_WEIGHTS = {
  */
 export const CLASSIFICATION_RULES = {
   strong_match_min_score: 75,
-  potential_match_min_score: 50,
+  potential_match_min_score: CLASSIFICATION_THRESHOLD,
   minimum_source_confidence: 0.60,
 } as const;
 

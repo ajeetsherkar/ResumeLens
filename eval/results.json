@@ -1,0 +1,3859 @@
+{
+  "generated_at": "2026-11-14T12:21:58.147Z",
+  "method": {
+    "calibration_n": 8,
+    "held_out_n": 7,
+    "total_n": 15,
+    "threshold_grid": [
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70
+    ],
+    "selection_metric": "macro-F1 across LCA, UI/UX and Neither",
+    "threshold_selection_rule": "Maximize calibration macro-F1; if all tested thresholds produce identical predictions, retain T=50 as a provisional fallback.",
+    "abstention_policy": "Needs review is reported as an abstention and counts as non-agreement.",
+    "strong_match_min_score": 75,
+    "minimum_source_confidence": 0.6
+  },
+  "selected_threshold": 50,
+  "calibration": [
+    {
+      "threshold": 50,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 51,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 52,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 53,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 54,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 55,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 56,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 57,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 58,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 59,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 60,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 61,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 62,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 63,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 64,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 65,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 66,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 67,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 68,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 69,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "threshold": 70,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_id": "029",
+          "split": "calibration",
+          "human_label": "LCA",
+          "predicted_label": "LCA",
+          "lca_score": 73.75,
+          "uiux_score": 0,
+          "lca_classification": "potential_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "018",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 40.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "023",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 48,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "011",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 25,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "030",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.90566,
+          "review_required": false
+        },
+        {
+          "candidate_id": "021",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Needs review",
+          "lca_score": 0,
+          "uiux_score": 0,
+          "lca_classification": "needs_review",
+          "uiux_classification": "needs_review",
+          "source_confidence": 0.716981,
+          "review_required": true
+        },
+        {
+          "candidate_id": "039",
+          "split": "calibration",
+          "human_label": "Neither",
+          "predicted_label": "Neither",
+          "lca_score": 23.75,
+          "uiux_score": 0,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 0.792453,
+          "review_required": false
+        },
+        {
+          "candidate_id": "008",
+          "split": "calibration",
+          "human_label": "UI/UX",
+          "predicted_label": "Neither",
+          "lca_score": 0,
+          "uiux_score": 38.5,
+          "lca_classification": "not_a_match",
+          "uiux_classification": "not_a_match",
+          "source_confidence": 1,
+          "review_required": false
+        }
+      ]
+    }
+  ],
+  "held_out": {
+    "count": 7,
+    "correct": 4,
+    "agreement": 0.5714285714285714,
+    "abstentions": 0,
+    "macro_f1": 0.5714285714285715,
+    "per_class": [
+      {
+        "label": "LCA",
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "support": 0
+      },
+      {
+        "label": "UI/UX",
+        "precision": 1,
+        "recall": 0.4,
+        "f1": 0.5714285714285715,
+        "support": 5
+      },
+      {
+        "label": "Neither",
+        "precision": 0.4,
+        "recall": 1,
+        "f1": 0.5714285714285715,
+        "support": 2
+      }
+    ],
+    "confusion_matrix": {
+      "labels": [
+        "LCA",
+        "UI/UX",
+        "Neither"
+      ],
+      "rows": [
+        {
+          "actual": "LCA",
+          "predicted": [
+            0,
+            0,
+            0
+          ],
+          "needs_review": 0
+        },
+        {
+          "actual": "UI/UX",
+          "predicted": [
+            0,
+            2,
+            3
+          ],
+          "needs_review": 0
+        },
+        {
+          "actual": "Neither",
+          "predicted": [
+            0,
+            0,
+            2
+          ],
+          "needs_review": 0
+        }
+      ]
+    },
+    "predictions": [
+      {
+        "candidate_id": "012",
+        "split": "held-out",
+        "human_label": "UI/UX",
+        "predicted_label": "UI/UX",
+        "lca_score": 0,
+        "uiux_score": 82.5,
+        "lca_classification": "not_a_match",
+        "uiux_classification": "strong_match",
+        "source_confidence": 1,
+        "review_required": false
+      },
+      {
+        "candidate_id": "005",
+        "split": "held-out",
+        "human_label": "UI/UX",
+        "predicted_label": "Neither",
+        "lca_score": 0,
+        "uiux_score": 41,
+        "lca_classification": "not_a_match",
+        "uiux_classification": "not_a_match",
+        "source_confidence": 0.90566,
+        "review_required": false
+      },
+      {
+        "candidate_id": "003",
+        "split": "held-out",
+        "human_label": "Neither",
+        "predicted_label": "Neither",
+        "lca_score": 18.75,
+        "uiux_score": 0,
+        "lca_classification": "not_a_match",
+        "uiux_classification": "not_a_match",
+        "source_confidence": 0.792453,
+        "review_required": false
+      },
+      {
+        "candidate_id": "031",
+        "split": "held-out",
+        "human_label": "Neither",
+        "predicted_label": "Neither",
+        "lca_score": 18.75,
+        "uiux_score": 0,
+        "lca_classification": "not_a_match",
+        "uiux_classification": "not_a_match",
+        "source_confidence": 0.792453,
+        "review_required": false
+      },
+      {
+        "candidate_id": "034",
+        "split": "held-out",
+        "human_label": "UI/UX",
+        "predicted_label": "Neither",
+        "lca_score": 0,
+        "uiux_score": 21.5,
+        "lca_classification": "not_a_match",
+        "uiux_classification": "not_a_match",
+        "source_confidence": 1,
+        "review_required": false
+      },
+      {
+        "candidate_id": "017",
+        "split": "held-out",
+        "human_label": "UI/UX",
+        "predicted_label": "UI/UX",
+        "lca_score": 0,
+        "uiux_score": 50.5,
+        "lca_classification": "not_a_match",
+        "uiux_classification": "potential_match",
+        "source_confidence": 0.90566,
+        "review_required": false
+      },
+      {
+        "candidate_id": "036",
+        "split": "held-out",
+        "human_label": "UI/UX",
+        "predicted_label": "Neither",
+        "lca_score": 0,
+        "uiux_score": 38.5,
+        "lca_classification": "not_a_match",
+        "uiux_classification": "not_a_match",
+        "source_confidence": 0.90566,
+        "review_required": false
+      }
+    ]
+  },
+  "sensitivity": [
+    {
+      "threshold": 55,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      }
+    },
+    {
+      "threshold": 60,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      }
+    },
+    {
+      "threshold": 65,
+      "count": 8,
+      "correct": 3,
+      "agreement": 0.375,
+      "abstentions": 1,
+      "macro_f1": 0.48148148148148145,
+      "per_class": [
+        {
+          "label": "LCA",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        {
+          "label": "UI/UX",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 4
+        },
+        {
+          "label": "Neither",
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444,
+          "support": 3
+        }
+      ],
+      "confusion_matrix": {
+        "labels": [
+          "LCA",
+          "UI/UX",
+          "Neither"
+        ],
+        "rows": [
+          {
+            "actual": "LCA",
+            "predicted": [
+              1,
+              0,
+              0
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "UI/UX",
+            "predicted": [
+              0,
+              0,
+              4
+            ],
+            "needs_review": 0
+          },
+          {
+            "actual": "Neither",
+            "predicted": [
+              0,
+              0,
+              2
+            ],
+            "needs_review": 1
+          }
+        ]
+      }
+    }
+  ]
+}
