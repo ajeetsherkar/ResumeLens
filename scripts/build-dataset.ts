@@ -12,6 +12,12 @@ import { classifyRole } from "../src/lib/classification";
 import type { EvidenceRole } from "../src/lib/evidence-dictionary";
 import type { EvidenceInput } from "../src/lib/evidence";
 import type { QualityAssessment } from "../src/lib/quality";
+import {
+  applyCandidateOverrides,
+  validateOverrideCandidates,
+  type BatchOverride,
+  type EducationRecord,
+} from "../src/lib/batch-overrides";
 
 interface StructuredProfile {
   candidate_id: string;
@@ -23,12 +29,16 @@ interface StructuredProfile {
     total_experience_months_max: number | null;
     lca_experience_months_max: number | null;
   };
+  education: EducationRecord[];
   quality: QualityAssessment;
   warnings: Warning[];
 }
 
 interface BuiltCandidate {
   candidate_id: string;
+  education: EducationRecord[];
+  original_education: EducationRecord[];
+  overrides: BatchOverride[];
   source_file: string;
   source_confidence: number;
   review_required: boolean;
@@ -50,6 +60,7 @@ interface BuiltCandidate {
 
 const INPUT = "data/processed/structured-profiles.json";
 const OUTPUT = "data/processed/candidates.json";
+const OVERRIDES = "overrides.json";
 
 const HELD_OUT_IDS = new Set([
   "012", "005", "003", "031", "034", "017", "036",
@@ -66,7 +77,17 @@ function main() {
     fs.readFileSync(INPUT, "utf8"),
   ) as StructuredProfile[];
 
+  if (!fs.existsSync(OVERRIDES)) {
+    throw new Error(`Override file not found: ${OVERRIDES}`);
+  }
+
+  const overrides = JSON.parse(
+    fs.readFileSync(OVERRIDES, "utf8"),
+  ) as BatchOverride[];
+
   const ids = profiles.map(profile => profile.candidate_id);
+
+  validateOverrideCandidates(ids, overrides);
 
   if (new Set(ids).size !== ids.length) {
     throw new Error("Duplicate candidate IDs detected.");
@@ -81,6 +102,12 @@ function main() {
   }
 
   const candidates: BuiltCandidate[] = profiles.map(profile => {
+    const educationResult = applyCandidateOverrides(
+      profile.candidate_id,
+      profile.education,
+      overrides,
+    );
+
     const evidenceInput: EvidenceInput = {
       raw_text: profile.raw_text,
       sections: profile.sections,
@@ -109,6 +136,9 @@ function main() {
 
     return {
       candidate_id: profile.candidate_id,
+      education: educationResult.education,
+      original_education: educationResult.originalEducation,
+      overrides: educationResult.appliedOverrides,
       source_file: profile.source_file,
       source_confidence: profile.quality.confidence,
       review_required: profile.quality.review_required,

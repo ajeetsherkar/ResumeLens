@@ -609,8 +609,60 @@ function CandidateContent({ detail }: { detail: CandidateDetail }) {
         <EmptyState>{detail.sourceDocument.message}</EmptyState>
       </Section>
 
-      <Section title="Manual overrides">
-        <EmptyState>{detail.overrides.message}</EmptyState>
+      <Section
+        title="Manual overrides"
+        description="Auditable corrections are shown separately from the original extracted information."
+      >
+        {detail.overrides.applied ? (
+          <div className="space-y-3">
+            <p className="text-xs leading-5 text-slate-600">
+              {detail.overrides.message}
+            </p>
+            {detail.overrides.records.map((record, index) => (
+              <div
+                key={`${record.field}-${index}`}
+                className="rounded-lg border border-slate-200 p-3"
+              >
+                <p className="text-sm font-semibold text-slate-900">
+                  {record.field}
+                </p>
+                <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-md bg-slate-50 p-3">
+                    <p className="text-xs font-semibold text-slate-500">
+                      Original value
+                    </p>
+                    <p className="mt-1 break-words text-sm text-slate-700">
+                      {record.original === null
+                        ? "Not extracted"
+                        : String(record.original)}
+                    </p>
+                  </div>
+                  <div className="rounded-md bg-slate-50 p-3">
+                    <p className="text-xs font-semibold text-slate-500">
+                      Corrected value
+                    </p>
+                    <p className="mt-1 break-words text-sm text-slate-900">
+                      {String(record.corrected)}
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-3 text-xs font-semibold text-slate-700">
+                  Reason
+                </p>
+                <p className="mt-1 text-sm leading-5 text-slate-600">
+                  {record.reason}
+                </p>
+                <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
+                  <span>Verified by: {record.verifiedBy}</span>
+                  <span>•</span>
+                  <span>Date: {record.date}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <EmptyState>{detail.overrides.message}</EmptyState>
+        )}
       </Section>
     </>
   );

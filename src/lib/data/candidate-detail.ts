@@ -67,6 +67,29 @@ type RawCandidate = {
     message: string;
     section?: string;
   }[];
+  education?: {
+    qualification: string | null;
+    academic_level: string;
+    field_of_study: string | null;
+    institution: string | null;
+    original_text: string;
+  }[];
+  original_education?: {
+    qualification: string | null;
+    academic_level: string;
+    field_of_study: string | null;
+    institution: string | null;
+    original_text: string;
+  }[];
+  overrides?: {
+    candidate_id: string;
+    field: string;
+    original: unknown;
+    corrected: unknown;
+    reason: string;
+    verified_by: string;
+    date: string;
+  }[];
   role_results: Record<
     Role,
     {
@@ -229,8 +252,16 @@ export type CandidateDetail = {
     message: string;
   };
   overrides: {
-    applied: false;
+    applied: boolean;
     message: string;
+    records: {
+      field: string;
+      original: unknown;
+      corrected: unknown;
+      reason: string;
+      verifiedBy: string;
+      date: string;
+    }[];
   };
 };
 
@@ -503,7 +534,7 @@ export async function getCandidateDetail(
       })),
     },
 
-    education: profile.education.map((item) => ({
+    education: (candidate.education ?? profile.education).map((item) => ({
       qualification: item.qualification,
       academicLevel: item.academic_level,
       fieldOfStudy: item.field_of_study,
@@ -569,8 +600,18 @@ export async function getCandidateDetail(
     },
 
     overrides: {
-      applied: false,
-      message: "Manual override management is not implemented.",
+      applied: (candidate.overrides?.length ?? 0) > 0,
+      message: candidate.overrides?.length
+        ? "Auditable batch corrections are applied. Original extracted values are preserved."
+        : "No batch overrides have been applied to this candidate.",
+      records: (candidate.overrides ?? []).map((item) => ({
+        field: item.field,
+        original: item.original,
+        corrected: item.corrected,
+        reason: sanitizeText(item.reason),
+        verifiedBy: sanitizeText(item.verified_by),
+        date: item.date,
+      })),
     },
   };
 }

@@ -7,6 +7,7 @@ import type { DashboardData } from "@/lib/data/dashboard";
 import RankedCandidates from "./ranked-candidates";
 import CandidateDetailDrawer from "./candidate-detail-drawer";
 import NeedsHumanReviewQueue from "./needs-human-review-queue";
+import ResumeUpload from "./resume-upload";
 
 type Role = "LCA" | "UI/UX";
 
@@ -154,6 +155,8 @@ export default function Dashboard({
             Dataset loaded · {data.processed} candidates
           </div>
         </section>
+
+        <ResumeUpload candidates={data.candidates} />
 
         <section className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3">

@@ -1,0 +1,11 @@
+[
+  {
+    "candidate_id": "046",
+    "field": "education[0].institution",
+    "original": null,
+    "corrected": "Kassel University (DE), Cairo University (EG), Monastir University (TN)",
+    "reason": "The education extractor placed the university line immediately following the Dual M.Sc. entry into a separate record. This correction associates that source line with the preceding degree entry. The original source text and date are retained.",
+    "verified_by": "Project reviewer",
+    "date": "2026-11-14"
+  }
+]
