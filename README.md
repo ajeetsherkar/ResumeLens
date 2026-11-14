@@ -301,7 +301,7 @@ For full details, see [`docs/methodology.md`](docs/methodology.md).
 
 The production application is deployed on Vercel:
 
-**https://resume-lens-topaz.vercel.app**
+https://resume-lens-topaz.vercel.app
 
 Production candidate data is retrieved from a private Vercel Blob store using these paths:
 
