@@ -40,6 +40,22 @@ The quality assessment uses four issue types:
 
 Eight deterministic rules, R1–R8, evaluate extraction quality, ISO references, truncated text, role dates, required sections, invalid dates, contact information, and extraction disagreement.
 
+
+The configured severity weights used by the source-confidence calculation are:
+
+| Quality rule | Weight |
+|---|---:|
+| R1 | 1.00 |
+| R2 | 0.60 |
+| R3 | 0.90 |
+| R4 | 0.50 |
+| R5 | 0.40 |
+| R6 | 1.00 |
+| R7 | 0.10 |
+| R8 | 0.80 |
+
+These weights are provisional implementation parameters. They determine the contribution of each fired rule to the confidence calculation; they are not candidate-fit scores.
+
 A review is required when R1, R6, or R8 fires.
 
 Source confidence is calculated as:

@@ -124,6 +124,11 @@ export default function MethodologyPage() {
               ))}
             </div>
             <p className="mt-4 text-sm leading-6 text-slate-600">
+              Configured quality-rule weights: R1 1.00, R2 0.60, R3 0.90,
+              R4 0.50, R5 0.40, R6 1.00, R7 0.10, and R8 0.80.
+              These are provisional implementation parameters.
+            </p>
+            <p className="mt-4 text-sm leading-6 text-slate-600">
               Review is required when R1, R6, or R8 fires. Source confidence is
               calculated as 1 minus the fired rule weights divided by the sum
               of all rule weights. These weights are provisional; confidence
