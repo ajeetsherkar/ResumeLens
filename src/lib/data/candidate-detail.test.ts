@@ -83,10 +83,32 @@ describe("getCandidateDetail", () => {
     expect(detail?.sourceDocument.message).toContain("not available");
   });
 
-  it("makes the unimplemented override state explicit", async () => {
+  it("returns no override records for candidates without corrections", async () => {
     const detail = await getCandidateDetail("001");
 
     expect(detail?.overrides.applied).toBe(false);
-    expect(detail?.overrides.message).toContain("not implemented");
+    expect(detail?.overrides.records).toEqual([]);
+    expect(detail?.overrides.message).toContain("No batch overrides");
+  });
+
+  it("returns corrected education and its complete audit record for candidate 046", async () => {
+    const detail = await getCandidateDetail("046");
+
+    expect(detail?.overrides.applied).toBe(true);
+    expect(detail?.education[0]?.institution).toBe(
+      "Kassel University (DE), Cairo University (EG), Monastir University (TN)",
+    );
+    expect(detail?.overrides.records).toHaveLength(1);
+    expect(detail?.overrides.records[0]).toMatchObject({
+      field: "education[0].institution",
+      original: null,
+      corrected:
+        "Kassel University (DE), Cairo University (EG), Monastir University (TN)",
+      verifiedBy: "Project reviewer",
+      date: "2026-11-14",
+    });
+    expect(detail?.overrides.records[0]?.reason).toContain(
+      "immediately following",
+    );
   });
 });
